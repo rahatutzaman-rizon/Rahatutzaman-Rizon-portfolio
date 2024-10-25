@@ -120,7 +120,7 @@ const ProjectCard = ({ project, onHover, onLeave }: ProjectCardProps) => {
         {/* Actions */}
         <div className="flex items-center justify-between">
           <Link
-            href={`/project/${project._id}`}
+            href={`/projects/${project._id}`}
             className="inline-flex items-center space-x-2 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300"
           >
             <Eye className="w-4 h-4" />
