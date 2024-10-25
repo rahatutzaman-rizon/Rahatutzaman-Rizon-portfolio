@@ -1,13 +1,16 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
-import { useSpring} from 'react-spring'
 import { FaGraduationCap, FaBriefcase, FaCode, FaLightbulb, FaRocket } from 'react-icons/fa'
 
+type SkillCardProps = {
+  icon: React.ElementType, // Update this type to be React.ElementType
+  title: string,
+  skills: string[]
+}
 
-
-const SkillCard = ({ icon: Icon, title, skills }) => (
+const SkillCard: React.FC<SkillCardProps> = ({ icon: Icon, title, skills }) => (
   <motion.div
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
@@ -26,25 +29,15 @@ const SkillCard = ({ icon: Icon, title, skills }) => (
   </motion.div>
 )
 
-export default function About() {
-  const [isHovered, setIsHovered] = useState(false)
-
+const About: React.FC = () => {
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
   }
 
-  const nameAnimation = useSpring({
-    transform: isHovered ? 'scale(1.1)' : 'scale(1)',
-    config: { tension: 300, friction: 10 }
-  })
-
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-    
       <div className="max-w-7xl mx-auto relative z-10">
-       
-
         <motion.div
           initial="hidden"
           animate="visible"
@@ -105,7 +98,7 @@ export default function About() {
         >
           <h2 className="text-3xl font-bold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-600">Personal Brand Statement</h2>
           <blockquote className="text-xl text-gray-300 leading-relaxed italic border-l-4 border-indigo-500 pl-4 max-w-3xl mx-auto">
-            "Transforming ideas into reality through code, I am committed to pushing the boundaries of what is possible in web development. My goal is to create innovative, scalable, and user-friendly solutions that make a lasting impact in the digital world."
+            `Transforming ideas into reality through code, I am committed to pushing the boundaries of what is possible in web development. My goal is to create innovative, scalable, and user-friendly solutions that make a lasting impact in the digital world.`
           </blockquote>
         </motion.div>
 
@@ -135,9 +128,9 @@ export default function About() {
             />
           </div>
         </motion.div>
-
-       
       </div>
     </section>
   )
 }
+
+export default About
