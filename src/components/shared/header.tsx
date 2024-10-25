@@ -20,11 +20,7 @@ const navItems: NavItem[] = [
     name: 'Projects', 
     path: '/projects', 
     icon: <Briefcase className="w-5 h-5" />,
-    subItems: [
-      { name: 'Web Development', path: '/projects/web-development' },
-      { name: 'Mobile Apps', path: '/projects/mobile-apps' },
-      { name: 'UI/UX Design', path: '/projects/ui-ux-design' },
-    ]
+    
   },
   { name: 'About', path: '/about', icon: <User className="w-5 h-5" /> },
   { name: 'Contact', path: '/contact', icon: <Mail className="w-5 h-5" /> },
@@ -44,7 +40,7 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-indigo-700 shadow-lg' : 'bg-indigo-600'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-indigo-400 shadow-lg' : 'bg-indigo-500'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-12 sm:h-20">
           <div className="flex items-center">

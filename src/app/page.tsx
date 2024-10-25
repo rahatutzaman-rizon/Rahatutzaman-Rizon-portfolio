@@ -1,5 +1,8 @@
-import About from "./about/About";
+
+import About from "./about/page";
 import Banner from "./banner/Banner";
+import ProfilePage from "./Details/Details";
+import ProjectsPage from "./projects/page";
 
 export default function Home() {
   return (
@@ -7,6 +10,8 @@ export default function Home() {
 
       <Banner></Banner>
       <About></About>
+      <ProfilePage></ProfilePage>
+      <ProjectsPage></ProjectsPage>
     </div>
   );
 }
