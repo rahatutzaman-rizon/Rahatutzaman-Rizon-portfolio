@@ -1,15 +1,15 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Home, Camera, BookOpen, Briefcase, User, Mail, Menu, X, ChevronDown } from 'lucide-react'
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Home, Camera, BookOpen, Briefcase, User, Mail, Menu, X, ChevronDown } from 'lucide-react';
 
 interface NavItem {
-  name: string
-  path: string
-  icon: React.ReactNode
-  subItems?: { name: string; path: string }[]
+  name: string;
+  path: string;
+  icon: React.ReactNode;
+  subItems?: { name: string; path: string }[];
 }
 
 const navItems: NavItem[] = [
@@ -20,35 +20,40 @@ const navItems: NavItem[] = [
     name: 'Projects', 
     path: '/projects', 
     icon: <Briefcase className="w-5 h-5" />,
-    
   },
   { name: 'About', path: '/about', icon: <User className="w-5 h-5" /> },
   { name: 'Contact', path: '/contact', icon: <Mail className="w-5 h-5" /> },
-]
+];
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-indigo-400 shadow-lg' : 'bg-indigo-500'}`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-blue-800 shadow-lg' : 'bg-blue-900'
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-12 sm:h-20">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
                 <span className="text-white text-2xl font-bold">RR</span>
               </div>
-              <span className="text-2xl font-semibold text-white hidden sm:inline-block">Rahatutzaman Rizon</span>
+              <span className="text-2xl font-semibold text-white hidden sm:inline-block">
+                Rahatutzaman Rizon
+              </span>
             </Link>
           </div>
           <nav className="hidden md:flex space-x-16">
@@ -57,7 +62,11 @@ export default function Header() {
                 {item.subItems ? (
                   <div className="relative">
                     <button
-                      className={`text-lg font-medium ${pathname.startsWith(item.path) ? 'text-pink-300' : 'text-white'} hover:text-pink-300 transition-colors duration-200 flex items-center space-x-2`}
+                      className={`text-lg font-medium ${
+                        pathname.startsWith(item.path)
+                          ? 'text-blue-300'
+                          : 'text-white'
+                      } hover:text-blue-300 transition-colors duration-200 flex items-center space-x-2`}
                     >
                       {item.icon}
                       <span>{item.name}</span>
@@ -69,7 +78,7 @@ export default function Header() {
                           <Link
                             key={subItem.name}
                             href={subItem.path}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-100 hover:text-indigo-900"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-900"
                             role="menuitem"
                           >
                             {subItem.name}
@@ -81,7 +90,11 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.path}
-                    className={`text-lg font-medium ${pathname === item.path ? 'text-pink-300' : 'text-white'} hover:text-pink-300 transition-colors duration-200 flex items-center space-x-2`}
+                    className={`text-lg font-medium ${
+                      pathname === item.path
+                        ? 'text-blue-300'
+                        : 'text-white'
+                    } hover:text-blue-300 transition-colors duration-200 flex items-center space-x-2`}
                   >
                     {item.icon}
                     <span>{item.name}</span>
@@ -91,9 +104,8 @@ export default function Header() {
             ))}
           </nav>
           <div className="flex items-center">
-          
             <button
-              className="md:hidden text-white p-2 rounded-md hover:bg-indigo-500 transition-colors duration-200"
+              className="md:hidden text-white p-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >
@@ -110,7 +122,9 @@ export default function Header() {
               <Link
                 href={item.path}
                 className={`${
-                  pathname === item.path ? 'bg-indigo-100 text-indigo-900' : 'text-gray-800 hover:bg-indigo-50 hover:text-indigo-900'
+                  pathname === item.path
+                    ? 'bg-blue-100 text-blue-900'
+                    : 'text-gray-800 hover:bg-blue-50 hover:text-blue-900'
                 } block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200`}
                 onClick={() => setIsOpen(false)}
               >
@@ -125,7 +139,7 @@ export default function Header() {
                     <Link
                       key={subItem.name}
                       href={subItem.path}
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-900 hover:bg-indigo-50 transition-colors duration-200"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200"
                       onClick={() => setIsOpen(false)}
                     >
                       {subItem.name}
@@ -135,9 +149,8 @@ export default function Header() {
               )}
             </React.Fragment>
           ))}
-        
         </div>
       </div>
     </header>
-  )
+  );
 }
