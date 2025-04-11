@@ -15,8 +15,7 @@ interface Project {
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Github, ExternalLink, Terminal, Eye, Briefcase, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Github, ExternalLink, Code, Terminal, Eye, Briefcase, ArrowRight } from 'lucide-react';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -53,21 +52,6 @@ export default function ProjectsPage() {
     return matchesFilter && matchesSearch;
   });
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const item = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0A0F1C] to-[#0F172A]">
       {/* Hero Section */}
@@ -76,12 +60,7 @@ export default function ProjectsPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.blue.500/15),transparent_50%)]"></div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
+          <div className="text-center">
             <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
               <Briefcase className="w-4 h-4 mr-2" />
               Portfolio
@@ -92,7 +71,7 @@ export default function ProjectsPage() {
             <p className="max-w-2xl mx-auto text-xl text-gray-300 leading-relaxed">
               A showcase of my technical expertise, creative problem-solving, and passion for building exceptional digital experiences.
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -169,16 +148,11 @@ export default function ProjectsPage() {
 
         {/* Projects Grid */}
         {!isLoading && filteredProjects.length > 0 && (
-          <motion.div 
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
               <ProjectCard key={project._id} project={project} />
             ))}
-          </motion.div>
+          </div>
         )}
       </div>
     </div>
@@ -193,8 +167,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
-    <motion.div
-      variants={item}
+    <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="group relative rounded-2xl overflow-hidden bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5"
@@ -273,7 +246,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all duration-300 hover:translate-y-[-2px] shadow-lg shadow-blue-600/20"
           >
             <Eye className="w-4 h-4" />
-            <span>View Details</span>
+            <span>More details</span>
             <ArrowRight className="w-3 h-3 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
 
@@ -299,6 +272,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
