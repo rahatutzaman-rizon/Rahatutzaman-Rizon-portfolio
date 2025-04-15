@@ -27,14 +27,15 @@ const ContactForm: React.FC = () => {
   const form = useRef<HTMLFormElement>(null)
   
   // Safely load animation data on client side only
-  const [animationData, setAnimationData] = useState(null)
+  const [animationData, setAnimationData] = useState<object | null>(null)
   
   // Handle client-side loading
   React.useEffect(() => {
     setIsClient(true)
     // Import animation data dynamically
     import('./contact.json')
-      .then(data => setAnimationData(data.default))
+    .then((module) => setAnimationData(module.default))
+  
       .catch(err => console.error('Error loading animation:', err))
   }, [])
 
