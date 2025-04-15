@@ -306,7 +306,7 @@ const Banner = () => {
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    {currentCategory.skills.map((skill, idx) => (
+                    {currentCategory.skills.map((skill) => (
                       <div
                         key={skill.name}
                         className="flex items-center gap-2 p-2 rounded-lg bg-slate-800/30"
@@ -324,7 +324,7 @@ const Banner = () => {
             <div className="pt-4">
               <p className="text-sm text-slate-400 mb-3">Connect with me:</p>
               <div className="flex flex-wrap gap-4">
-                {socialIcons.map(({ Icon, href, color, label }, index) => (
+                {socialIcons.map(({ Icon, href, label }, index) => (
                   <motion.a
                     key={index}
                     href={href}

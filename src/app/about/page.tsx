@@ -145,7 +145,7 @@ const About: React.FC = () => {
             transition={{ duration: 1, delay: 0.7 }}
             className="text-lg text-gray-300 leading-relaxed italic border-l-4 border-purple-500 pl-4 max-w-3xl mx-auto"
           >
-            "Transforming ideas into reality through code, I am committed to pushing the boundaries of what is possible in web development. My goal is to create innovative, scalable, and user-friendly solutions that make a lasting impact in the digital world."
+            `Transforming ideas into reality through code, I am committed to pushing the boundaries of what is possible in web development. My goal is to create innovative, scalable, and user-friendly solutions that make a lasting impact in the digital world.`
           </motion.blockquote>
         </motion.div>
 
@@ -188,7 +188,7 @@ const About: React.FC = () => {
           className="text-center mt-16"
         >
           <GitBranch className="text-purple-500 w-8 h-8 mx-auto mb-4" />
-          <p className="text-purple-300">Let's build something amazing together</p>
+          <p className="text-purple-300">Lets build something amazing together</p>
         </motion.div>
       </div>
     </section>

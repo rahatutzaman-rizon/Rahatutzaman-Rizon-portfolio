@@ -15,7 +15,7 @@ interface Project {
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Github, ExternalLink, Code, Terminal, Eye, Briefcase, ArrowRight } from 'lucide-react';
+import { Github, ExternalLink,  Terminal, Eye, Briefcase, ArrowRight } from 'lucide-react';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);

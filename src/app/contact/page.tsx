@@ -4,8 +4,10 @@ import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import emailjs from 'emailjs-com'
 import { FaUser, FaEnvelope, FaCommentAlt, FaPaperPlane, FaPhone } from 'react-icons/fa'
-import Lottie from 'lottie-react'
-import contactAnimation from './contact.json'
+import dynamic from 'next/dynamic'
+
+// Dynamically import Lottie to avoid SSR issues
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 
 interface FormData {
   name: string
@@ -21,7 +23,20 @@ const ContactForm: React.FC = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const [submitStatus, setSubmitStatus] = useState<string | null>(null)
+  const [isClient, setIsClient] = useState<boolean>(false)
   const form = useRef<HTMLFormElement>(null)
+  
+  // Safely load animation data on client side only
+  const [animationData, setAnimationData] = useState(null)
+  
+  // Handle client-side loading
+  React.useEffect(() => {
+    setIsClient(true)
+    // Import animation data dynamically
+    import('./contact.json')
+      .then(data => setAnimationData(data.default))
+      .catch(err => console.error('Error loading animation:', err))
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -124,11 +139,14 @@ const ContactForm: React.FC = () => {
               className="mt-8"
               variants={itemVariants}
             >
-              <Lottie 
-                animationData={contactAnimation} 
-                loop={true}
-                style={{ width: '100%', height: '200px' }}
-              />
+              {/* Only render Lottie on client-side */}
+              {isClient && animationData && (
+                <Lottie 
+                  animationData={animationData} 
+                  loop={true}
+                  style={{ width: '100%', height: '200px' }}
+                />
+              )}
             </motion.div>
           </motion.div>
           <motion.div 
