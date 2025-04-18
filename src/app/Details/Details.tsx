@@ -7,7 +7,10 @@ import {
   MapPin, 
   Award,
   Star,
-  ChevronRight
+  ChevronRight,
+  Code,
+  Server,
+  Layout
 } from 'lucide-react';
 
 interface WorkExperience {
@@ -18,6 +21,7 @@ interface WorkExperience {
   endDate: string | null;
   current: boolean;
   responsibilities: string[];
+  technologies?: string[];
 }
 
 interface Education {
@@ -36,29 +40,42 @@ interface ProfileData {
 
 const profileData: ProfileData = {
   workExperience: [
-
     {
-        title: "Junior Software Developer",
-        company: "JMC Technology Ltd",
-        location: "Bangladesh",
-        startDate: "2024-07",
-        endDate: "2024-10",
-        current: false,
-        responsibilities: [
-          "Collaborate with cross-functional teams to design, develop, and maintain web applications using the MERN stack, Nextjs",
-          "Develop and optimize RESTful APIs using Node.js and Express.js",
-          "Participate in code reviews and contribute to improving development processes"
-        ]
-      },
-
-
+      title: "Junior Software Engineer",
+      company: "Implevista",
+      location: "Bangladesh",
+      startDate: "2024-12",
+      endDate: null,
+      current: true,
+      responsibilities: [
+        "Develop and maintain web applications using Next.js, TypeScript, and Tailwind CSS",
+        "Build robust backend services with Node.js following MVC patterns and best practices",
+        "Create and optimize RESTful APIs for frontend and backend communication",
+        "Collaborate with cross-functional teams for full-stack development requirements"
+      ],
+      technologies: ["Next.js", "Node.js", "TypeScript", "Tailwind CSS", "REST API", "MVC Pattern"]
+    },
+    {
+      title: "Junior Software Developer",
+      company: "JMC Technology Ltd",
+      location: "Bangladesh",
+      startDate: "2024-07",
+      endDate: "2024-10",
+      current: false,
+      responsibilities: [
+        "Collaborate with cross-functional teams to design, develop, and maintain web applications using the MERN stack, Nextjs",
+        "Develop and optimize RESTful APIs using Node.js and Express.js",
+        "Participate in code reviews and contribute to improving development processes"
+      ],
+      technologies: ["MERN Stack", "Next.js", "Express.js", "REST API"]
+    },
     {
       title: "Project Associate",
       company: "Farhana's BrainStation",
       location: "Bangladesh",
       startDate: "2024-05",
-      endDate: null,
-      current: true,
+      endDate: "2024-11",
+      current: false,
       responsibilities: [
         "Handle projects from start to finish, delivering quality results on time.",
         "Work with cross-functional teams, organize tasks, and enable communication.",
@@ -102,17 +119,7 @@ const profileData: ProfileData = {
         "Science Club Member"
       ]
     },
-    {
-      degree: "Secondary School Certificate (SSC)",
-      institution: "BPMSC",
-      period: "2014-2016",
-      result: "GPA 5.00 (out of 5.00)",
-      achievements: [
-        "Board Merit Scholarship recipient",
-        "Best performer in Mathematics Olympiad",
-        "Achieved perfect GPA"
-      ]
-    }
+    
   ]
 };
 
@@ -166,6 +173,12 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
+const TechBadge = ({ tech }: { tech: string }) => (
+  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 border border-blue-500/30 hover:from-blue-500/30 hover:to-purple-500/30 transition-colors">
+    {tech}
+  </span>
+);
+
 const ProfilePage = () => {
   return (
     <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-900 to-black text-gray-100 py-16 px-4 sm:px-6 lg:px-8">
@@ -193,7 +206,53 @@ const ProfilePage = () => {
           >
             Professional Journey
           </motion.h1>
+          <motion.p
+            className="text-lg text-gray-400 max-w-2xl mx-auto"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            Full-stack developer specializing in modern web technologies and application development
+          </motion.p>
         </div>
+
+        {/* Stats Section */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div variants={item}>
+            <CardWrapper className="text-center py-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4">
+                <Code className="w-6 h-6 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-bold text-blue-400 mb-1">Frontend</h3>
+              <p className="text-gray-400">Next.js, TypeScript, Redux,CSS Frameworks</p>
+            </CardWrapper>
+          </motion.div>
+          
+          <motion.div variants={item}>
+            <CardWrapper className="text-center py-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4">
+                <Server className="w-6 h-6 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-bold text-blue-400 mb-1">Backend</h3>
+              <p className="text-gray-400">Node.js, Express, REST APIs</p>
+            </CardWrapper>
+          </motion.div>
+          
+          <motion.div variants={item}>
+            <CardWrapper className="text-center py-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4">
+                <Layout className="w-6 h-6 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-bold text-blue-400 mb-1">Patterns</h3>
+              <p className="text-gray-400">MVC, Clean Architecture</p>
+            </CardWrapper>
+          </motion.div>
+        </motion.div>
 
         {/* Work Experience Section */}
         <motion.section
@@ -212,7 +271,7 @@ const ProfilePage = () => {
                 isPresent={experience.current}
               >
                 <motion.div variants={item}>
-                  <CardWrapper className="hover:shadow-blue-500/5">
+                  <CardWrapper className="hover:shadow-blue-500/5 border-l-4 border-l-blue-500">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <div>
                         <h3 className="text-xl font-bold text-blue-400 mb-1 flex items-center gap-2">
@@ -239,6 +298,15 @@ const ProfilePage = () => {
                         </p>
                       </div>
                     </div>
+                    
+                    {experience.technologies && (
+                      <div className="mb-4 flex flex-wrap gap-2">
+                        {experience.technologies.map((tech, idx) => (
+                          <TechBadge key={idx} tech={tech} />
+                        ))}
+                      </div>
+                    )}
+                    
                     <ul className="space-y-2">
                       {experience.responsibilities.map((responsibility, idx) => (
                         <motion.li
@@ -246,8 +314,8 @@ const ProfilePage = () => {
                           variants={item}
                           className="flex items-start gap-2 text-gray-300"
                         >
-                          <ChevronRight className="w-4 h-4 mt-1 text-blue-500" />
-                          {responsibility}
+                          <ChevronRight className="w-4 h-4 mt-1 text-blue-500 flex-shrink-0" />
+                          <span>{responsibility}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -270,7 +338,7 @@ const ProfilePage = () => {
             {profileData.education.map((edu, index) => (
               <TimelineItem key={index} year={edu.period.split('-')[0]}>
                 <motion.div variants={item}>
-                  <CardWrapper className="hover:shadow-purple-500/5">
+                  <CardWrapper className="hover:shadow-purple-500/5 border-l-4 border-l-purple-500">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <div>
                         <h3 className="text-xl font-bold text-purple-400 mb-1">
@@ -307,8 +375,8 @@ const ProfilePage = () => {
                           variants={item}
                           className="flex items-start gap-2 text-gray-300"
                         >
-                          <Star className="w-4 h-4 mt-1 text-purple-500" />
-                          {achievement}
+                          <Star className="w-4 h-4 mt-1 text-purple-500 flex-shrink-0" />
+                          <span>{achievement}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -318,6 +386,8 @@ const ProfilePage = () => {
             ))}
           </div>
         </motion.section>
+        
+     
       </motion.div>
     </div>
   );
