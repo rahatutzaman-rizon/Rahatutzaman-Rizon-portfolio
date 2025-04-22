@@ -252,7 +252,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
           <div className="flex space-x-3">
             <Link
-              href={project.github_link_client}
+              href={project.github_link_client} 
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-300 group-hover:rotate-6"

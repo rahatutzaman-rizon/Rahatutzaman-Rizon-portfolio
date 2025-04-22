@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
             <h4 className="text-2xl font-semibold mb-6 text-purple-300">What I Do</h4>
             <ul className="space-y-4">
               <li className="flex items-center text-gray-300 hover:text-purple-300 transition-colors duration-300">
-                <FaCode className="mr-3 text-purple-400" /> Web Development
+                <FaCode className="mr-3 text-purple-400" /> Software Development
               </li>
               <li className="flex items-center text-gray-300 hover:text-purple-300 transition-colors duration-300">
                 <FaLaptopCode className="mr-3 text-purple-400" /> Full Stack Solutions
@@ -125,7 +125,7 @@ const Footer: React.FC = () => {
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ repeat: Infinity, duration: 1.5 }}
             >
-              ❤️
+             
             </motion.span>{' '}
             by Rahatutzaman Rizon
           </motion.p>
