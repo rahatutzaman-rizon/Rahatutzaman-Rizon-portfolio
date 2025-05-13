@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { FaFacebookF, FaLinkedinIn, FaGithub, FaEnvelope, FaCode, FaLaptopCode, FaMobileAlt } from 'react-icons/fa'
+import type React from "react"
+import { motion } from "framer-motion"
+import { FaFacebookF, FaLinkedinIn, FaGithub, FaEnvelope, FaCode, FaLaptopCode, FaMobileAlt } from "react-icons/fa"
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
@@ -27,112 +27,204 @@ const Footer: React.FC = () => {
   }
 
   return (
-    <footer className="bg-gradient-to-r from-gray-900 via-purple-900 to-indigo-900 text-white py-16">
-      <motion.div
-        className="container mx-auto px-4"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+    <footer className="relative py-20 overflow-hidden bg-[#050A18]">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-[800px] h-[800px] rounded-full bg-blue-600/10 blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-blue-500/10 blur-[100px] translate-x-1/3 translate-y-1/3"></div>
+        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] rounded-full bg-blue-400/5 blur-[80px] -translate-x-1/2 -translate-y-1/2"></div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-20 left-[10%] w-1 h-20 bg-gradient-to-b from-blue-500 to-transparent opacity-40"></div>
+        <div className="absolute top-40 left-[20%] w-1 h-40 bg-gradient-to-b from-blue-400 to-transparent opacity-30"></div>
+        <div className="absolute top-10 right-[15%] w-1 h-30 bg-gradient-to-b from-blue-500 to-transparent opacity-40"></div>
+        <div className="absolute bottom-20 right-[25%] w-1 h-20 bg-gradient-to-b from-transparent to-blue-500 opacity-30"></div>
+
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,30,60,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,30,60,0.1)_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.15]"></div>
+      </div>
+
+      <div className="container relative z-10 px-4 mx-auto max-w-7xl">
+        {/* Logo and tagline section */}
+        <motion.div
+          className="flex flex-col items-center justify-center mb-16 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
+            Rahatutzaman Rizon
+          </h2>
+          <div className="w-20 h-1 mx-auto mt-4 mb-6 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"></div>
+          <p className="max-w-2xl text-blue-100/80">
+            Full Stack Developer passionate about creating efficient and innovative solutions.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid grid-cols-1 gap-8 md:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {/* About Section */}
-          <motion.div variants={itemVariants}>
-            <h3 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-              Rahatutzaman Rizon
-            </h3>
-            <p className="text-gray-300 mb-4 leading-relaxed">
-              Full Stack Developer passionate about creating efficient and innovative solutions.
-              Transforming ideas into reality through code.
+          <motion.div
+            variants={itemVariants}
+            className="relative p-8 overflow-hidden rounded-2xl backdrop-blur-md"
+            style={{
+              background: "linear-gradient(145deg, rgba(15,23,42,0.6), rgba(15,23,42,0.2))",
+              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+              border: "1px solid rgba(59, 130, 246, 0.1)",
+            }}
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-700"></div>
+            <h3 className="mb-6 text-2xl font-semibold text-white">About Me</h3>
+            <p className="mb-6 leading-relaxed text-blue-100/80">
+              Transforming ideas into reality through code. I specialize in building modern web applications with
+              cutting-edge technologies.
             </p>
-            <p className="text-gray-400">
-              &copy; {currentYear} All rights reserved.
-            </p>
+            <p className="text-blue-300/80">&copy; {currentYear} All rights reserved.</p>
+
+            {/* Decorative element */}
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-blue-500/10 blur-xl"></div>
           </motion.div>
 
           {/* Services */}
-          <motion.div variants={itemVariants}>
-            <h4 className="text-2xl font-semibold mb-6 text-purple-300">What I Do</h4>
-            <ul className="space-y-4">
-              <li className="flex items-center text-gray-300 hover:text-purple-300 transition-colors duration-300">
-                <FaCode className="mr-3 text-purple-400" /> Software Development
-              </li>
-              <li className="flex items-center text-gray-300 hover:text-purple-300 transition-colors duration-300">
-                <FaLaptopCode className="mr-3 text-purple-400" /> Full Stack Solutions
-              </li>
-              <li className="flex items-center text-gray-300 hover:text-purple-300 transition-colors duration-300">
-                <FaMobileAlt className="mr-3 text-purple-400" /> Responsive Design
-              </li>
+          <motion.div
+            variants={itemVariants}
+            className="relative p-8 overflow-hidden rounded-2xl backdrop-blur-md"
+            style={{
+              background: "linear-gradient(145deg, rgba(15,23,42,0.6), rgba(15,23,42,0.2))",
+              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+              border: "1px solid rgba(59, 130, 246, 0.1)",
+            }}
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-800"></div>
+            <h4 className="mb-6 text-2xl font-semibold text-white">What I Do</h4>
+            <ul className="space-y-5">
+              <motion.li
+                className="flex items-center p-3 transition-all rounded-lg bg-blue-900/20 hover:bg-blue-900/30 hover:translate-x-1"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <div className="flex items-center justify-center w-10 h-10 mr-4 rounded-full bg-blue-500/20">
+                  <FaCode className="text-blue-400" />
+                </div>
+                <span className="text-blue-100">Software Development</span>
+              </motion.li>
+
+              <motion.li
+                className="flex items-center p-3 transition-all rounded-lg bg-blue-900/20 hover:bg-blue-900/30 hover:translate-x-1"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <div className="flex items-center justify-center w-10 h-10 mr-4 rounded-full bg-blue-500/20">
+                  <FaLaptopCode className="text-blue-400" />
+                </div>
+                <span className="text-blue-100">Full Stack Solutions</span>
+              </motion.li>
+
+              <motion.li
+                className="flex items-center p-3 transition-all rounded-lg bg-blue-900/20 hover:bg-blue-900/30 hover:translate-x-1"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <div className="flex items-center justify-center w-10 h-10 mr-4 rounded-full bg-blue-500/20">
+                  <FaMobileAlt className="text-blue-400" />
+                </div>
+                <span className="text-blue-100">Responsive Design</span>
+              </motion.li>
             </ul>
+
+            {/* Decorative element */}
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-blue-600/10 blur-xl"></div>
           </motion.div>
 
           {/* Contact & Social */}
-          <motion.div variants={itemVariants}>
-            <h4 className="text-2xl font-semibold mb-6 text-purple-300">Get in Touch</h4>
-            <a 
-              href="mailto:rizonrahat199@gmail.com" 
-              className="flex items-center text-gray-300 hover:text-purple-300 transition-colors duration-300 mb-6"
+          <motion.div
+            variants={itemVariants}
+            className="relative p-8 overflow-hidden rounded-2xl backdrop-blur-md"
+            style={{
+              background: "linear-gradient(145deg, rgba(15,23,42,0.6), rgba(15,23,42,0.2))",
+              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+              border: "1px solid rgba(59, 130, 246, 0.1)",
+            }}
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
+            <h4 className="mb-6 text-2xl font-semibold text-white">Get in Touch</h4>
+
+            <motion.a
+              href="mailto:rizonrahat199@gmail.com"
+              className="flex items-center p-3 mb-6 transition-all rounded-lg bg-blue-900/20 hover:bg-blue-900/30"
+              whileHover={{ scale: 1.02, x: 5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <FaEnvelope className="mr-3 text-purple-400" />
-              rizonrahat199@gmail.com
-            </a>
-            <div className="flex space-x-6">
-              <motion.a 
-                href="https://www.facebook.com/rahatutzaman.rizon" 
-                className="text-gray-300 hover:text-blue-400 transition-colors duration-300"
-                variants={socialIconVariants}
+              <div className="flex items-center justify-center w-10 h-10 mr-4 rounded-full bg-blue-500/20">
+                <FaEnvelope className="text-blue-400" />
+              </div>
+              <span className="text-blue-100">rizonrahat199@gmail.com</span>
+            </motion.a>
+
+            <h5 className="mb-4 text-sm font-medium tracking-wider text-blue-300 uppercase">Connect With Me</h5>
+            <div className="flex space-x-4">
+              <motion.a
+                href="https://www.facebook.com/rahatutzaman.rizon"
+                className="flex items-center justify-center w-12 h-12 transition-all rounded-full bg-blue-900/30 hover:bg-blue-800/40"
                 whileHover="hover"
+                variants={socialIconVariants}
               >
-                <FaFacebookF size={28} />
+                <FaFacebookF className="text-blue-300" />
               </motion.a>
-              <motion.a 
-                href="https://www.linkedin.com/in/rahatutzamanrizon/" 
-                className="text-gray-300 hover:text-blue-500 transition-colors duration-300"
-                variants={socialIconVariants}
+
+              <motion.a
+                href="https://www.linkedin.com/in/rahatutzamanrizon/"
+                className="flex items-center justify-center w-12 h-12 transition-all rounded-full bg-blue-900/30 hover:bg-blue-800/40"
                 whileHover="hover"
+                variants={socialIconVariants}
               >
-                <FaLinkedinIn size={28} />
+                <FaLinkedinIn className="text-blue-300" />
               </motion.a>
-              <motion.a 
-                href="https://github.com/rahatutzaman-rizon" 
-                className="text-gray-300 hover:text-gray-100 transition-colors duration-300"
-                variants={socialIconVariants}
+
+              <motion.a
+                href="https://github.com/rahatutzaman-rizon"
+                className="flex items-center justify-center w-12 h-12 transition-all rounded-full bg-blue-900/30 hover:bg-blue-800/40"
                 whileHover="hover"
+                variants={socialIconVariants}
               >
-                <FaGithub size={28} />
+                <FaGithub className="text-blue-300" />
               </motion.a>
             </div>
+
+            {/* Decorative element */}
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-blue-700/10 blur-xl"></div>
           </motion.div>
-        </div>
-      </motion.div>
-      
-      {/* Bottom Bar */}
-      <motion.div 
-        className="mt-12 pt-8 border-t border-gray-700"
-        variants={itemVariants}
-      >
-        <div className="container mx-auto px-4 text-center">
-          <motion.p 
-            className="text-gray-400"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            Designed and built with{' '}
+        </motion.div>
+
+        {/* Bottom Bar */}
+        <motion.div
+          className="relative z-10 pt-12 mt-16 text-center border-t border-blue-900/30"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <p className="text-blue-300/80">
+            Designed and built with{" "}
             <motion.span
-              className="text-red-500"
+              className="inline-block text-blue-500"
               animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
+              transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
             >
-             
-            </motion.span>{' '}
+              ❤️
+            </motion.span>{" "}
             by Rahatutzaman Rizon
-          </motion.p>
-        </div>
-      </motion.div>
+          </p>
+        </motion.div>
+      </div>
     </footer>
   )
 }
 
-export default Footer;
+export default Footer
