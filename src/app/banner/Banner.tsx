@@ -250,14 +250,7 @@ const Banner = () => {
             className="space-y-8"
           >
             <div className="space-y-3">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 text-sm font-medium"
-              >
-                Software Engineer
-              </motion.div>
+           
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
                 <motion.span

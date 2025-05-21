@@ -103,22 +103,13 @@ const profileData: ProfileData = {
       degree: "B.Sc. in Information and Communication Technology",
       institution: "Mawlana Bhashani Science and Technology University",
       period: "2019-2024",
-      gpa: 3.48,
+      gpa: 3.50,
       achievements: [
         "Railway automatic crossing bar Magnetic system",
         "Completed thesis on Project Progress Management System"
       ]
-    },
-    {
-      degree: "Higher Secondary Certificate (HSC)",
-      institution: "Dinajpur Govt College",
-      period: "2016-2018",
-      result: "GPA 4.75 (out of 5.00)",
-      achievements: [
-        "Attend Science Olympiad",
-        "Science Club Member"
-      ]
-    },
+    }
+   
     
   ]
 };
